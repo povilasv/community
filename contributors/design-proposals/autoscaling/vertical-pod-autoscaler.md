@@ -141,14 +141,14 @@ Design
 (see further sections for details and justification)
 
 1. We introduce a new type of **API resource**:
-   `VerticalPodAutoscaler`. It consists of a **label selector** to match Pods,
+   `VerticalPodAutoscaler`. It consists of a **label selector** to match Pods, Deployments or StatefulSets,
    the **resources policy** (controls how VPA computes the resources), the
    **update policy** (controls how changes are applied to Pods) and the
    recommended Pod resources (an output field).
    
 2. **VPA Recommender** is a new component which **consumes utilization signals
    and OOM events** for all Pods in the cluster from the
-   [Metrics Server](https://github.com/kubernetes-incubator/metrics-server).
+   [Metrics Server](https://github.com/kubernetes-incubator/metrics-server) or alternatively can be configured to use [Prometheus](http://prometheus.io/) with metrics provided by [cadvisor](https://github.com/google/cadvisor).
    
 3. VPA Recommender **watches all Pods**, keeps calculating fresh recommended
    resources for them and **stores the recommendations in the VPA objects**.
